@@ -1,4 +1,13 @@
 // TODO: load the dataset 
+let movies;
+fetch('../data/attractions.json')
+  .then(response => response.json())
+  .then(data => {
+		movies = data;
+		console.log('movies - (a)', movies);
+	});
+
+console.log('movies - (b)', movies);  
 
 function filterData(category) {
 
