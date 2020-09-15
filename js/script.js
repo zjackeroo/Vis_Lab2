@@ -1,54 +1,18 @@
 // TODO: load the dataset 
-// let disney;
-// fetch('../data/attractions.json')
-//   .then(response => response.json())
-//   .then(data => {
-// 		disney = data;
-// 		console.log('disney - (a)', disney);
-// 	});
-
-// console.log('disney - (b)', disney);  
-
-let disney = [
-        {
-          "Location": "MAGIC KINGDOM at Walt Disney World, Lake Buena Vista, FL",
-          "Category": "Theme Park",
-          "Visitors": 18588000,
-          "Entry": "Paid"
-        },
-        {
-          "Location": "TOKYO DISNEYLAND, Tokyo, Japan",
-          "Category": "Theme Park",
-          "Visitors": 17214000,
-          "Entry": "Paid"
-        },
-        {
-          "Location": "DISNEYLAND, Anaheim, CA",
-          "Category": "Theme Park",
-          "Visitors": 16202000,
-          "Entry": "Paid"
-        },
-        {
-          "Location": "TOKYO DISNEY SEA, Tokyo, Japan",
-          "Category": "Theme Park",
-          "Visitors": 14084000,
-          "Entry": "Paid"
-        },
-        {
-          "Location": "EPCOT at Walt Disney World, Lake Buena Vista, FL",
-          "Category": "Theme Park",
-          "Visitors": 11229000,
-          "Entry": "Paid"
-        },
-        {
-          "Location": "DISNEYLAND PARK AT DISNEYLAND PARIS, Marne-La-Vallee, France",
-          "Category": "Theme Park",
-          "Visitors": 10430000,
-          "Entry": "Paid"
-        }
-];
+let disney;
+fetch('../data/attractions.json')
+  .then(response => response.json())
+  .then(data => {
+		disney = data;
+		console.log('disney - (a)', disney);
+	});
+console.log('disney - (b)', disney);  
 
 function filterData(category) {
+
+    console.log('current category is ', category);
+
+    // category = "Visitors";
 
 	/* **************************************************
 	 *
@@ -64,7 +28,17 @@ function filterData(category) {
 	 *
 	 * **************************************************/
 
+    // Filter by category
+    var disney_cat;
+    if (category === 'all') {
+        disney_cat = disney;
+    } else {
+        disney_cat = disney.filter(d => d.Category === category);
+    }
+    console.log('categorized disney ', disney_cat);
+
     // Filter by visitor count
+    property = "Visitors";
     function sortByProperty(property){  
         return function(a,b){
            if(a[property] > b[property])  
@@ -74,12 +48,12 @@ function filterData(category) {
            return 0;
         }
     }
-    disney.sort(sortByProperty('Visitors'));
-    // console.log('sorted disney ', disney);
+    disney_cat.sort(sortByProperty(property));
+    console.log('sorted disney ', disney_cat);
 
     // Filter top 5
-    let disney5 = disney.slice(0,5);
-    // console.log('filtered disney ', disney5);
+    const disney5 = disney_cat.slice(0,5);
+    console.log('filtered disney ', disney5);
 
     // Render bar chart
     renderBarChart(disney5);
@@ -87,7 +61,9 @@ function filterData(category) {
 
 // TODO: Define an event listener for the dropdown menu
 //       Call filterData with the selected category
-
-console.log(document.querySelector('#attraction-category'));
-
-document.querySelector('#attraction-category').addEventListener('change', filterData());
+let sc = document.querySelector('#attraction-category');
+sc.addEventListener('change', (event)=>{
+    console.log('Current event.target.value is: ', event.target.value);
+    filterData(event.target.value);
+});
+// sc.addEventListener('change', filterData(event.target.value));
