@@ -4,7 +4,8 @@ fetch('../data/attractions.json')
   .then(response => response.json())
   .then(data => {
 		disney = data;
-		console.log('disney - (a)', disney);
+        console.log('disney - (a)', disney);
+        filterData("all");
 	});
 console.log('disney - (b)', disney);  
 

@@ -4,10 +4,12 @@
 
 body {
   background-color: #e1e3e4;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Times New Roman', Times, serif;
 }
 
 h1 {
+  text-align: center;
+  padding-top: 30px;
   margin-bottom: 60px;
   font-weight: 100;
 }
@@ -27,12 +29,21 @@ h2 {
   margin-right: 20px;
 }
 
+.user-control {
+  text-align: center;
+}
+
 .user-control #attraction-category {
+  color: darkslategray;
   display: inline-block;
   background: transparent;
   max-width: 200px;
-  border: 1px solid #75D4CA;
+  border: 2px solid seagreen;
   outline: none;
+}
+
+.user-control #attraction-category:hover {
+  cursor: pointer;
 }
 
 .source-desc {
@@ -45,12 +56,18 @@ h2 {
 /*   BAR-CHART  */
 /****************/
 
+#chart-area {
+  text-align: center;
+}
+
 .bar {
   fill: #3C948B;
 }
 
 .bar:hover {
-  fill: #327972;
+  /* fill: #327972; */
+  fill: lightsalmon;
+  cursor: zoom-in;
 }
 
 .axis {
@@ -87,7 +104,8 @@ h2 {
     width: 200px;
     height: auto;
     padding: 10px;
-    background-color: white;
+    background-color: lightsalmon;
+    color: white;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     border-radius: 10px;
