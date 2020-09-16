@@ -1,6 +1,6 @@
 // TODO: load the dataset 
 let disney;
-fetch('../data/attractions.json')
+fetch('./data/attractions.json')
   .then(response => response.json())
   .then(data => {
 		disney = data;
